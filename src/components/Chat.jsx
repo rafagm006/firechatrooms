@@ -11,7 +11,6 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
   const { login, user, loadingSession } = useLogin();
-  const userLogged = auth.currentUser.email;
   // Mensaje de error si no hay chatId
   if (!chatId) {
     return (
@@ -60,14 +59,14 @@ const Chat = () => {
     <div class="flex h-full flex-col border-l border-stroke dark:border-strokedark xl:w-3/4 bg-white">           
       <div className="no-scrollbar max-h-full space-y-3.5 overflow-auto px-6 py-7.5">
   {messages.map((message) => (
-    <div key={message.id} className={userLogged === message.email ? "max-w-125" : "ml-auto max-w-125"}>
-      <p className={userLogged === message.email ? "mb-2.5 text-sm font-medium" : "mb-2.5 text-sm font-medium text-right"}>
+    <div key={message.id} className={auth.currentUser.email === message.email ? "max-w-125" : "ml-auto max-w-125"}>
+      <p className={auth.currentUser.email === message.email ? "mb-2.5 text-sm font-medium" : "mb-2.5 text-sm font-medium text-right"}>
         {message.email}
       </p>
-      <div className={userLogged === message.email ? "mb-2.5 rounded-2xl rounded-tl-none bg-gray py-3 px-5 dark:bg-boxdark-2" : "mb-2.5 rounded-2xl rounded-br-none bg-primary py-3 px-5"}>
-        <p className={userLogged === message.email ? "" : "text-white"}>{message.description}</p>
+      <div className={auth.currentUser.email === message.email ? "mb-2.5 rounded-2xl rounded-tl-none bg-gray py-3 px-5 dark:bg-boxdark-2" : "mb-2.5 rounded-2xl rounded-br-none bg-primary py-3 px-5"}>
+        <p className={auth.currentUser.email === message.email ? "" : "text-white"}>{message.description}</p>
       </div>
-      <p className={userLogged === message.email ? "text-xs" : "text-right text-xs"}>
+      <p className={auth.currentUser.email === message.email ? "text-xs" : "text-right text-xs"}>
         {message.fecha ? message.fecha.toDate().toString() : "Fecha no disponible"}
       </p>
     </div>
