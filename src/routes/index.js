@@ -3,7 +3,7 @@ import { db } from '../main.jsx';
 import { collection, getDocs } from 'firebase/firestore';
 
 const Principal = lazy(() => import('../components/Chat'));
-
+/*
 const Rutas = () => {
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,11 +28,26 @@ const Rutas = () => {
     fetchChatGroups();
   }, []);
 
+  console.log("Llega...");
   return loading ? null : groups.map((group) => ({
     path: `/chat/${group.id}`,
     title: group.name,
     component: Principal,
   }));
-};
+};*/
 
+const coreRoutes = [
+  {
+    path: '/chat/0w079THcmPdjpChYKmQN',
+    title: 'Charla Tecnológica',
+    component: Principal,
+  },
+  {
+    path: '/chat/2tZh8ELGbdp0r6z0DPBa',
+    title: 'Club de Lectura',
+    component: Principal,
+  }
+];
+
+const Rutas = [...coreRoutes];
 export default Rutas;
